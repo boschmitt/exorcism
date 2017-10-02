@@ -10,6 +10,7 @@
 namespace exorcism {
 
 two_lvl32 read_pla(const char *, const bool);
+void write_pla(const two_lvl32 &, const char *);
 
 }
 #endif

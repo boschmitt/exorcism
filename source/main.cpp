@@ -85,6 +85,8 @@ main(int argc, char **argv)
 		fprintf(stdout, "ORIGINAL: "), print_stats(original);
 		fprintf(stdout, "RESULT:   "), print_stats(result);
 	}
+	if (out_fname)
+		exorcism::write_pla(result, out_fname);
 
 	return EXIT_SUCCESS;
 }

@@ -26,6 +26,7 @@ set(EXORCISM_SRC_FILES
 	${CMAKE_SOURCE_DIR}/source/cube32.cpp
 	${CMAKE_SOURCE_DIR}/source/exorcism.cpp
 	${CMAKE_SOURCE_DIR}/source/io/read_pla.cpp
+	${CMAKE_SOURCE_DIR}/source/io/write_pla.cpp
 )
 
 #set target executable
