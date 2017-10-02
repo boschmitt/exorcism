@@ -112,7 +112,7 @@ read_pla(const char *fname, const bool verbose = false)
 			fprintf(stderr, "Cube input data is inconsistent with the declared attributes");
 			break;
 		}
-		cube32 c(0);
+		cube32 c;
 		for (std::uint32_t i = 0; i < n_inputs; ++i, ++tk) {
 			switch (*tk) {
 			case '-': break;

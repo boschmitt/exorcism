@@ -18,7 +18,6 @@ public:
 	/* Constants */
 	static const std::uint64_t ZERO = 0x00000000FFFFFFFFULL;
 	static const std::uint64_t ONE  = 0x0000000000000000ULL;
-	static const std::uint64_t INVALID = 0xFFFFFFFF00000000ULL;
 
 	union {
 		struct {
@@ -52,8 +51,8 @@ public:
 	void invert();
 
 	std::uint32_t n_lits() const;
-	std::string str() const;
-	void print() const;
+	std::string str(const std::uint32_t n_vars = 32) const;
+	void print(const std::uint32_t n_vars = 32) const;
 	void print_as_vec() const;
 };
 
@@ -71,7 +70,7 @@ struct cube32_hash {
 std::uint32_t difference(const cube32, const cube32);
 
 /*------------------------------------------------------------------------------
-| The distance of two cubes is the number of variables for which the 
+| The distance of two cubes is the number of variables for which the
 | corresponding literals have different values.
 *-----------------------------------------------------------------------------*/
 std::uint32_t distance(const cube32, const cube32);

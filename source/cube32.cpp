@@ -14,7 +14,7 @@
 namespace exorcism {
 
 cube32::cube32()
-	: m_value(INVALID)
+	: m_value(ONE)
 { }
 
 cube32::cube32(const std::uint64_t value)
@@ -81,13 +81,11 @@ std::uint32_t
 cube32::n_lits() const { return __builtin_popcount(m_mask); }
 
 std::string
-cube32::str() const
+cube32::str(const std::uint32_t n_vars) const
 {
 	std::string s;
-	for (auto i = 0; i < 32; ++i) {
+	for (auto i = 0; i < n_vars; ++i) {
 		if (((m_mask >> i) & 1) == 0) {
-			if (((m_polarity >> i) & 1))
-				break;
 			s.push_back('-');
 		} else if (m_polarity & (1 << i))
 			s.push_back('1');
@@ -98,19 +96,17 @@ cube32::str() const
 }
 
 void
-cube32::print() const
+cube32::print(const std::uint32_t n_vars) const
 {
-	for (auto i = 0; i < 32; i++) {
+	for (auto i = 0; i < n_vars; i++) {
 		if (((m_mask >> i) & 1) == 0) {
-			if (((m_polarity >> i) & 1))
-				break;
 			fprintf(stdout, "-");
 		} else if (m_polarity & (1 << i))
 			fprintf(stdout, "1");
 		else
 			fprintf(stdout, "0");
 	}
-	fprintf(stdout, "\n");
+	fprintf(stdout, "(%x | %x)\n", m_mask, m_polarity);
 }
 
 std::uint32_t
