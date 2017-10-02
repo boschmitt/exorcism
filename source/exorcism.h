@@ -41,11 +41,8 @@ private:
 	std::vector<std::vector<std::pair<cube32, cube32>>> m_pairs;
 	std::vector<std::vector<std::pair<cube32, cube32>>> m_pairs_tmp;
 
-	/* Stats */
-	std::array<uint32_t, 4> m_n_dist = {0, 0, 0, 0};
-
 	/* Bookkeeping */
-	std::array<std::uint32_t, 4> m_pairs_bookmark = {0, 0, 0, 0};
+	std::array<std::uint32_t, 4> m_pairs_bookmark;
 
 	/* Algorithm Control */
 	std::uint32_t m_max_dist = 2;

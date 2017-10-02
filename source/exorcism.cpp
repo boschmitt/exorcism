@@ -36,19 +36,16 @@ exorcism_mngr::add_cube(const cube32 &c, bool add = true)
 		for (auto it : m_cubes[i]) {
 			const auto dist = distance(c, it);
 			if (dist == 1) {
-				++m_n_dist[dist];
 				auto new_cube = merge(c, it);
 				m_cubes[i].erase(it);
 				--m_n_cubes;
 				return add_cube(new_cube) + 1;
 			} else if (dist == 0) {
-				++m_n_dist[dist];
 				m_cubes[i].erase(it);
 				m_pairs_tmp[0].clear();
 				m_n_cubes -= 2;
 				return 2;
 			} else if (dist <= m_max_dist) {
-				++m_n_dist[dist];
 				m_pairs_tmp[dist - 2].push_back(std::make_pair(c, it));
 			}
 		}
@@ -133,6 +130,7 @@ exorcism_mngr::exorcism_mngr(const std::vector<cube32> &original, std::uint32_t 
 	  m_n_cubes(0),
 	  m_pairs(1),
 	  m_pairs_tmp(5u),
+	  m_pairs_bookmark({0, 0, 0, 0}),
 	  m_verbose(verbose)
 {
 	for (auto &pairs : m_pairs)
