@@ -1,0 +1,4 @@
+# Building directories
+/build/
+.DS_Store
+tags
