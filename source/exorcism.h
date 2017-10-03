@@ -24,9 +24,11 @@ public:
 	std::vector<cube32> run();
 
 private:
+	std::uint32_t n_cubes();
 	int add_cube(const cube32 &, bool);
 	int find_pairs(const cube32 &, std::uint32_t);
 	unsigned exorlink2();
+	unsigned exorlink3();
 
 	void pairs_bookmark();
 	void pairs_rollback();
@@ -36,7 +38,6 @@ private:
 	typedef std::unordered_set<cube32, cube32_hash> hash_bucket;
 	std::vector<hash_bucket> m_cubes;
 	std::uint32_t m_n_vars;
-	std::uint32_t m_n_cubes;
 
 	std::vector<std::vector<std::pair<cube32, cube32>>> m_pairs;
 	std::vector<std::vector<std::pair<cube32, cube32>>> m_pairs_tmp;
@@ -45,10 +46,17 @@ private:
 	std::array<std::uint32_t, 4> m_pairs_bookmark;
 
 	/* Algorithm Control */
-	std::uint32_t m_max_dist = 2;
+	std::uint32_t m_max_dist;
 
 	unsigned cube_groups2[8] = {2, 0, 1, 2,
                                     0, 2, 2, 1};
+
+	unsigned cube_groups3[54] = {2, 0, 0, 1, 2, 0, 1, 1, 2,
+	                             2, 0, 0, 1, 0, 2, 1, 2, 1,
+	                             0, 2, 0, 2, 1, 0, 1, 1, 2,
+	                             0, 2, 0, 0, 1, 2, 2, 1, 1,
+	                             0, 0, 2, 2, 0, 1, 1, 2, 1,
+	                             0, 0, 2, 0, 2, 1, 2, 1, 1};
 };
 
 static two_lvl32 exorcise(const two_lvl32 &original, bool verbose = false)
