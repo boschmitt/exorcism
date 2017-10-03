@@ -18,8 +18,6 @@ input function are ignored and only the on-set of the function is considered.
 
 ## TODO
 * Implement pair queue as circular buffers.
-* Implement write PLA function.
-* Implement exorlink-3 operation.
 * Implement exorlink-4 operation.
 * Add support for multiple outputs.
 
