@@ -22,7 +22,6 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 # Files
 include_directories(${CMAKE_SOURCE_DIR}/source)
 set(EXORCISM_SRC_FILES
-	${CMAKE_SOURCE_DIR}/source/main.cpp
 	${CMAKE_SOURCE_DIR}/source/cube32.cpp
 	${CMAKE_SOURCE_DIR}/source/exorcism.cpp
 	${CMAKE_SOURCE_DIR}/source/io/read_pla.cpp
@@ -30,5 +29,7 @@ set(EXORCISM_SRC_FILES
 )
 
 #set target executable
-add_executable(${TOOL_NAME} ${EXORCISM_SRC_FILES})
+add_library(libexorcism STATIC ${EXORCISM_SRC_FILES})
+add_executable(${TOOL_NAME} ${CMAKE_SOURCE_DIR}/source/main.cpp)
+target_link_libraries(${TOOL_NAME} libexorcism)
 
