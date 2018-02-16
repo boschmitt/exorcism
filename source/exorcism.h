@@ -66,6 +66,15 @@ static two_lvl32 exorcise(const two_lvl32 &original, bool verbose = false)
 	return {two_lvl_type::ESOP, original.m_n_inputs, {ret}};
 }
 
+static std::vector<cube32> exorcise(const std::vector<cube32> &original,
+                                    const uint32_t n_inputs,
+                                    bool verbose = false)
+{
+	exorcism_mngr exor(original, n_inputs, verbose);
+	auto ret = exor.run();
+	return ret;
+}
+
 }
 
 #endif
