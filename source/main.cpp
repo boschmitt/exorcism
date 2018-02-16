@@ -47,13 +47,14 @@ main(int argc, char **argv)
 	char *out_fname = nullptr;
 	bool verbose = false;
 	bool werbose = false;
+	bool shuffle = false;
 	/* Opts parsing */
 	int opt;
 	extern int optind;
 	extern int optopt;
 	extern char* optarg;
 
-	while ((opt = getopt(argc, argv, "hvw")) != -1) {
+	while ((opt = getopt(argc, argv, "hsvw")) != -1) {
 		switch (opt) {
 		case 'h':
 			usage(EXIT_SUCCESS);
@@ -63,6 +64,9 @@ main(int argc, char **argv)
 			break;
 		case 'w':
 			werbose = true;
+			break;
+		case 's':
+			shuffle = true;
 		default:
 			break;
 		}
@@ -80,6 +84,9 @@ main(int argc, char **argv)
 		return EXIT_FAILURE;
 
 	exorcism::two_lvl32 original = exorcism::read_pla(in_fname, verbose | werbose);
+	if (shuffle)
+		std::random_shuffle(original.m_fnct[0].begin(), original.m_fnct[0].end());
+
 	exorcism::two_lvl32 result = exorcism::exorcise(original, werbose);
 	if (verbose | werbose) {
 		fprintf(stdout, "ORIGINAL: "), print_stats(original);
